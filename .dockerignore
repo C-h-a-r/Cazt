@@ -1,0 +1,9 @@
+.git
+.gitignore
+**/.git
+**/node_modules
+**/target
+**/.env
+frontend/dist
+*.md
+.github

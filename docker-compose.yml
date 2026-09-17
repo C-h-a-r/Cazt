@@ -1,0 +1,21 @@
+services:
+  cazt:
+    build: .
+    container_name: cazt
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      CAZT_BIND: ${CAZT_BIND:-0.0.0.0}
+      CAZT_PORT: ${CAZT_PORT:-8787}
+      CAZT_PUBLIC_HOST: ${CAZT_PUBLIC_HOST:-}
+      CAZT_LOG: ${CAZT_LOG:-info}
+      CAZT_LOG_FORMAT: ${CAZT_LOG_FORMAT:-pretty}
+      CAZT_KNOWN_CAST_HOSTS: ${CAZT_KNOWN_CAST_HOSTS:-}
+      CAZT_KNOWN_DLNA_LOCATIONS: ${CAZT_KNOWN_DLNA_LOCATIONS:-}
+      CINEJOY_CATALOG_URL: ${CINEJOY_CATALOG_URL:-}
+    # Host networking is required for mDNS (Chromecast) and SSDP (DLNA)
+    # multicast discovery on Linux. Docker Desktop on Windows/macOS cannot
+    # provide equivalent multicast; see README and docker-compose.desktop.yml.
+    network_mode: host

@@ -1,0 +1,25 @@
+# Use this file on Docker Desktop (Windows / macOS) where host networking
+# and multicast discovery usually do not work.
+#
+#   docker compose -f docker-compose.desktop.yml up -d --build
+#
+# Set CAZT_PUBLIC_HOST to the host's LAN IP and list known device addresses.
+
+services:
+  cazt:
+    build: .
+    container_name: cazt
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "${CAZT_PORT:-8787}:8787"
+    environment:
+      CAZT_BIND: 0.0.0.0
+      CAZT_PORT: 8787
+      CAZT_PUBLIC_HOST: ${CAZT_PUBLIC_HOST:-}
+      CAZT_LOG: ${CAZT_LOG:-info}
+      CAZT_KNOWN_CAST_HOSTS: ${CAZT_KNOWN_CAST_HOSTS:-}
+      CAZT_KNOWN_DLNA_LOCATIONS: ${CAZT_KNOWN_DLNA_LOCATIONS:-}
+      CINEJOY_CATALOG_URL: ${CINEJOY_CATALOG_URL:-}

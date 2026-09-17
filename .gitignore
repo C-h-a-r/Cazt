@@ -1,0 +1,24 @@
+# Build
+target/
+**/target/
+node_modules/
+dist/
+web/
+*.tsbuildinfo
+
+# Env
+.env
+.env.local
+*.pem
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Logs / coverage
+*.log
+coverage/
+tarpaulin-report.html

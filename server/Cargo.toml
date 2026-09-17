@@ -1,0 +1,62 @@
+[package]
+name = "cazt"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Self-hosted LAN video casting"
+license = "MIT"
+repository = "https://github.com/cazt-app/cazt"
+readme = "../README.md"
+
+[lib]
+name = "cazt"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cazt"
+path = "src/main.rs"
+
+[dependencies]
+async-trait = "0.1"
+axum = { version = "0.8", features = ["ws", "macros", "json"] }
+base64 = "0.22"
+bytes = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde"] }
+dashmap = "6"
+dotenvy = "0.15"
+futures = "0.3"
+hex = "0.4"
+http = "1"
+if-addrs = "0.13"
+ipnet = "2"
+local-ip-address = "0.6"
+mime_guess = "2"
+oxicast = "0.0.3"
+parking_lot = "0.12"
+percent-encoding = "2"
+rand = "0.8"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls-native-roots", "stream", "gzip", "http2", "json"] }
+rupnp = { version = "3", features = ["full_device_spec"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+ssdp-client = "2"
+thiserror = "2"
+tokio = { version = "1.45", features = ["full"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+tower = { version = "0.5", features = ["util", "limit"] }
+tower-http = { version = "0.6", features = ["fs", "cors", "trace", "timeout", "limit", "compression-gzip"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "fmt"] }
+url = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+
+[dev-dependencies]
+http-body-util = "0.1"
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = "symbols"
+panic = "abort"

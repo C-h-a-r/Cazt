@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --bg: #f4efe8;
+  --ink: #1c1713;
+  --muted: #6f675f;
+  --card: rgba(255, 252, 247, 0.86);
+  --line: rgba(28, 23, 19, 0.1);
+  --accent: #c45c26;
+  --accent-ink: #fffaf4;
+  --ok: #2f7d4a;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #161311;
+  --ink: #f3ebe3;
+  --muted: #b5a89c;
+  --card: rgba(32, 27, 24, 0.88);
+  --line: rgba(243, 235, 227, 0.1);
+  --accent: #e07a3d;
+  --accent-ink: #1c120c;
+  --ok: #7dcea0;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+}
+
+button,
+input,
+[type="range"] {
+  font: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
